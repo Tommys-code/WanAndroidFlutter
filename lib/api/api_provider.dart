@@ -11,4 +11,8 @@ class ApiProvider extends BaseProvider {
   Future<BaseResponse> getHomeArticles(int num) {
     return mGet(Api.HOME_ARTICLE_LIST.replaceFirst('{pageNum}', '$num'));
   }
+
+  Future<BaseResponse> getSearchHotKey() {
+    return mGet(Api.HOME_HOT_KEY);
+  }
 }

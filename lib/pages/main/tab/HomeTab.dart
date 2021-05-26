@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:wan_android_flutter/models/article_list.dart';
 import 'package:wan_android_flutter/pages/main/main_logic.dart';
 import 'package:wan_android_flutter/routes/route.dart';
-import 'package:wan_android_flutter/widgets/ArticleItemWidget.dart';
+import 'package:wan_android_flutter/widgets/article_Item_widget.dart';
 
 class HomeTab extends GetView<MainLogic> {
   @override
@@ -30,7 +30,9 @@ class HomeTab extends GetView<MainLogic> {
   }
 
   //打开搜索页
-  _openSearchPage() {}
+  _openSearchPage() {
+    Get.toNamed(RouteConfig.search);
+  }
 
   Widget _buildContent() {
     return EasyRefresh.custom(

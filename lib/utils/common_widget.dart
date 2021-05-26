@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class CommonWidget {
@@ -8,6 +9,14 @@ class CommonWidget {
       gravity: ToastGravity.BOTTOM,
       timeInSecForIosWeb: 3,
       fontSize: 16.0,
+    );
+  }
+
+  static AppBar buildAppBar(String title) {
+    return AppBar(
+      leading: Icon(Icons.arrow_back_ios),
+      title: Text(title),
+      centerTitle: true,
     );
   }
 }
