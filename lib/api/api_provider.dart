@@ -22,4 +22,14 @@ class ApiProvider extends BaseProvider {
       query: {"k": key},
     );
   }
+
+  Future<BaseResponse> getPublicChapters() {
+    return mGet(Api.PUBLIC_CHAPTER);
+  }
+
+  Future<BaseResponse> getPublicArticles(int num, int id) {
+    return mGet(Api.PUBLIC_CHAPTER_ARTICLES
+        .replaceFirst('{id}', '$id')
+        .replaceFirst('{pageNum}', '$num'));
+  }
 }
