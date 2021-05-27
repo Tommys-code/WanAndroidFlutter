@@ -17,4 +17,10 @@ class Api {
   ///获取公众号列表
   static const String PUBLIC_CHAPTER_ARTICLES =
       "wxarticle/list/{id}/{pageNum}/json";
+
+  ///项目分类
+  static const String PROJECT_TREE = "project/tree/json";
+
+  ///项目列表数据
+  static const String PROJECT_LIST = "project/list/{pageNum}/json";
 }

@@ -15,8 +15,10 @@ class BaseProvider extends GetConnect {
     httpClient.addResponseModifier(responseInterceptor);
   }
 
-  Future<BaseResponse> mGet(String url, {bool showError = true}) async {
-    BaseResponse response = BaseResponse.fromJson((await get(url)).body);
+  Future<BaseResponse> mGet(String url,
+      {Map<String, dynamic>? query, bool showError = true}) async {
+    BaseResponse response =
+        BaseResponse.fromJson((await get(url, query: query)).body);
     if (!response.isSuccess() && showError) {
       CommonWidget.showToast(response.errorMsg);
     }

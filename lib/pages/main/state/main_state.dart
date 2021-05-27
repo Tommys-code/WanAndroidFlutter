@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wan_android_flutter/pages/main/tab/HomeTab.dart';
-import 'package:wan_android_flutter/pages/main/tab/MineTab.dart';
-import 'package:wan_android_flutter/pages/main/tab/ProjectTab.dart';
-import 'package:wan_android_flutter/pages/main/tab/PublicTab.dart';
+import 'package:wan_android_flutter/pages/main/tab/home_tab.dart';
+import 'package:wan_android_flutter/pages/main/tab/mine_tab.dart';
+import 'package:wan_android_flutter/pages/main/tab/project_tab.dart';
+import 'package:wan_android_flutter/pages/main/tab/public_tab.dart';
 
 class MainState {
   late RxInt currentTab;

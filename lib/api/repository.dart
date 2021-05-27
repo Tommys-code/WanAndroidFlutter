@@ -5,6 +5,7 @@ import 'package:wan_android_flutter/models/article_list.dart';
 import 'package:wan_android_flutter/models/base_response.dart';
 import 'package:wan_android_flutter/models/home_banner.dart';
 import 'package:wan_android_flutter/models/hot_key.dart';
+import 'package:wan_android_flutter/models/project_tree.dart';
 import 'package:wan_android_flutter/models/wx_chapter.dart';
 
 class Repository {
@@ -70,6 +71,23 @@ class Repository {
 
   Future<ArticleList?> getPublicArticles(int page, int id) async {
     BaseResponse res = await apiProvider.getPublicArticles(page, id);
+    if (res.isSuccess()) {
+      return ArticleList.fromJson(res.data);
+    }
+  }
+
+  Future<List<ProjectTree>?> getProjectTree() async {
+    BaseResponse res = await apiProvider.getProjectTree();
+    if (res.isSuccess()) {
+      List<ProjectTree> data = (res.data as List<dynamic>)
+          .map((e) => ProjectTree.fromJson((e as Map<String, dynamic>)))
+          .toList();
+      return data;
+    }
+  }
+
+  Future<ArticleList?> getProjectArticles(int page, int id) async {
+    BaseResponse res = await apiProvider.getProjectList(page, id);
     if (res.isSuccess()) {
       return ArticleList.fromJson(res.data);
     }

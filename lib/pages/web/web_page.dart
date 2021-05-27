@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:wan_android_flutter/pages/web/web_logic.dart';
+import 'package:wan_android_flutter/utils/common_widget.dart';
 
 class WebPage extends GetView<WebLogic> {
   @override
@@ -11,7 +12,7 @@ class WebPage extends GetView<WebLogic> {
     return WebviewScaffold(
       url: Get.arguments,
       appBar: AppBar(
-        elevation: 0,
+        leading: CommonWidget.buildBackIcon(),
         centerTitle: true,
         title: Obx(() => Text(controller.mTitle.value)),
       ),

@@ -21,6 +21,8 @@ class CommonWidget {
     );
   }
 
+  static Icon buildBackIcon() => Icon(Icons.arrow_back_ios);
+
   static Widget buildEmptyList() {
     return Center(
       child: Column(

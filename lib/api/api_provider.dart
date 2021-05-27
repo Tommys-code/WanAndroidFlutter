@@ -32,4 +32,15 @@ class ApiProvider extends BaseProvider {
         .replaceFirst('{id}', '$id')
         .replaceFirst('{pageNum}', '$num'));
   }
+
+  Future<BaseResponse> getProjectTree() {
+    return mGet(Api.PROJECT_TREE);
+  }
+
+  Future<BaseResponse> getProjectList(int num, int id) {
+    return mGet(
+      Api.PROJECT_LIST.replaceFirst('{pageNum}', '$num'),
+      query: {"cid": "$id"},
+    );
+  }
 }
