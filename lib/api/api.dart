@@ -9,4 +9,7 @@ class Api{
     ///搜索热词
     static const String HOME_HOT_KEY = "hotkey/json";
 
+    ///关键字查询文章
+    static const String QUERY_ARTICLES = "article/query/{pageNum}/json";
+
 }

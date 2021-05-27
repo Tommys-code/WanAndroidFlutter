@@ -14,4 +14,5 @@ const Map<String, String> zh_CN = {
   "search_history": "历史搜索",
   "clear": "清除",
   "cancel": "取消",
+  "empty_hint": "暂无数据",
 };

@@ -49,4 +49,11 @@ class Repository {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setStringList(Constants.HISTORY_KEY, keys);
   }
+
+  Future<ArticleList?> queryArticles(int page,String key) async{
+    BaseResponse res = await apiProvider.queryArticles(page,key);
+    if (res.isSuccess()) {
+      return ArticleList.fromJson(res.data);
+    }
+  }
 }

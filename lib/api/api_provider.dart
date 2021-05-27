@@ -15,4 +15,11 @@ class ApiProvider extends BaseProvider {
   Future<BaseResponse> getSearchHotKey() {
     return mGet(Api.HOME_HOT_KEY);
   }
+
+  Future<BaseResponse> queryArticles(int num, String key) {
+    return mPost(
+      Api.QUERY_ARTICLES.replaceFirst('{pageNum}', '$num'),
+      query: {"k": key},
+    );
+  }
 }

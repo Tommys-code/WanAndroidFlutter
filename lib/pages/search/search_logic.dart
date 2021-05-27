@@ -31,21 +31,21 @@ class SearchLogic extends GetxController {
   }
 
   saveKey(String key) async {
-    editController.text = key;
     List<String> list = historyKeys.value ?? [];
     if (list.contains(key)) {
       list.remove(key);
     }
-    if(list.length == 10) {
+    if (list.length == 10) {
       list.removeLast();
     }
     list.insert(0, key);
     historyKeys.value = list;
     historyKeys.refresh();
     _repository.saveHistoryKey(list);
+    editController.text = key;
   }
 
-  clearHistoryKey() async{
+  clearHistoryKey() async {
     historyKeys.value = null;
     historyKeys.refresh();
     _repository.saveHistoryKey([]);
