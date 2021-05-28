@@ -15,4 +15,12 @@ const Map<String, String> zh_CN = {
   "clear": "清除",
   "cancel": "取消",
   "empty_hint": "暂无数据",
+  "not_login": "未登录",
+  "login": "登录",
+  "register": "注册",
+  "login_account_hint": "输⼊帐号",
+  "login_password_hint": "输⼊密码",
+  "login_password_confirm_hint": "确认密码",
+  "register_account": "注册新账号",
+  "direct_login": "直接登录",
 };

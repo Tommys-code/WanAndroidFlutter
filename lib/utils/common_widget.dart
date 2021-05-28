@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:wan_android_flutter/utils/widget_extensions.dart';
 
 class CommonWidget {
   static showToast(String msg) {
@@ -13,15 +14,16 @@ class CommonWidget {
     );
   }
 
-  static AppBar buildAppBar(String title) {
+  static AppBar buildAppBar(Widget title) {
     return AppBar(
-      leading: Icon(Icons.arrow_back_ios),
-      title: Text(title),
+      leading: buildBackIcon(),
+      title: title,
       centerTitle: true,
     );
   }
 
-  static Icon buildBackIcon() => Icon(Icons.arrow_back_ios);
+  static Widget buildBackIcon() =>
+      Icon(Icons.arrow_back_ios).onTab(() => Get.back());
 
   static Widget buildEmptyList() {
     return Center(

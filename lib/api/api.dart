@@ -23,4 +23,8 @@ class Api {
 
   ///项目列表数据
   static const String PROJECT_LIST = "project/list/{pageNum}/json";
+
+  ///登录注册
+  static const String LOGIN = "user/login";
+  static const String REGISTER = "user/register";
 }

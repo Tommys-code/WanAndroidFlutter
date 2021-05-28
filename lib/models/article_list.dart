@@ -35,6 +35,8 @@ class ArticleData {
   late String superChapterName;
   late String chapterName;
   late bool collect;
+  late String envelopePic;
+  late String desc;
 
   bool isNew() {
     return publishTime >=
@@ -52,6 +54,8 @@ class ArticleData {
     required this.superChapterName,
     required this.chapterName,
     required this.collect,
+    required this.envelopePic,
+    required this.desc,
   });
 
   ArticleData.fromJson(Map<String, dynamic> json) {
@@ -65,6 +69,8 @@ class ArticleData {
     shareUser = json['shareUser'];
     superChapterName = json['superChapterName'];
     title = json['title'];
+    envelopePic = json['envelopePic'];
+    desc = json['desc'];
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +85,8 @@ class ArticleData {
     data['shareUser'] = this.shareUser;
     data['superChapterName'] = this.superChapterName;
     data['title'] = this.title;
+    data['envelopePic'] = this.envelopePic;
+    data['desc'] = this.desc;
     return data;
   }
 }

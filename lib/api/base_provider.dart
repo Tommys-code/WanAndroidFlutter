@@ -2,17 +2,23 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/request/request.dart';
+import 'package:wan_android_flutter/api/api.dart';
 import 'package:wan_android_flutter/api/constants.dart';
 import 'package:wan_android_flutter/models/base_response.dart';
 import 'package:wan_android_flutter/utils/common_widget.dart';
 
+import 'interceptor/save_cookie_interceptor.dart';
+
 class BaseProvider extends GetConnect {
+  static const String SET_COOKIE_KEY = "set-cookie";
+
   @override
   void onInit() {
     httpClient.baseUrl = Constants.baseUrl;
     // httpClient.addAuthenticator(authInterceptor);
-    httpClient.addRequestModifier(requestInterceptor);
+    // httpClient.addRequestModifier(requestInterceptor);
     httpClient.addResponseModifier(responseInterceptor);
+    httpClient.addResponseModifier(saveCookieInterceptor);
   }
 
   Future<BaseResponse> mGet(String url,
@@ -38,19 +44,19 @@ class BaseProvider extends GetConnect {
   }
 }
 
-FutureOr<Request> authInterceptor(request) async {
-  // final token = StorageService.box.pull(StorageItems.accessToken);
-  // request.headers['X-Requested-With'] = 'XMLHttpRequest';
-  // request.headers['Authorization'] = 'Bearer $token';
-  return request;
-}
-
-FutureOr<Request> requestInterceptor(request) async {
-  // final token = StorageService.box.pull(StorageItems.accessToken);
-  // request.headers['X-Requested-With'] = 'XMLHttpRequest';
-  // request.headers['Authorization'] = 'Bearer $token';
-  return request;
-}
+// FutureOr<Request> authInterceptor(request) async {
+//   // final token = StorageService.box.pull(StorageItems.accessToken);
+//   // request.headers['X-Requested-With'] = 'XMLHttpRequest';
+//   // request.headers['Authorization'] = 'Bearer $token';
+//   return request;
+// }
+//
+// FutureOr<Request> requestInterceptor(request) async {
+//   // final token = StorageService.box.pull(StorageItems.accessToken);
+//   // request.headers['X-Requested-With'] = 'XMLHttpRequest';
+//   // request.headers['Authorization'] = 'Bearer $token';
+//   return request;
+// }
 
 FutureOr<dynamic> responseInterceptor(
     Request request, Response response) async {

@@ -12,3 +12,27 @@ extension ListWigetExt on Widget {
               ? CommonWidget.buildEmptyList()
               : this;
 }
+
+extension WidgetDrawable on Widget {
+  Widget drawableHorizontal({
+    Widget? left,
+    Widget? right,
+  }) =>
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (left != null) left,
+          this,
+          if (right != null) right,
+        ],
+      );
+}
+
+typedef TabCallBack = void Function();
+
+extension WidgetGesture on Widget {
+  Widget onTab(TabCallBack? callBack) => GestureDetector(
+        child: this,
+        onTap: callBack,
+      );
+}

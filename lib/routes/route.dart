@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:wan_android_flutter/pages/login/login_register_binding.dart';
+import 'package:wan_android_flutter/pages/login/login_register_page.dart';
 import 'package:wan_android_flutter/pages/main/main_binding.dart';
 import 'package:wan_android_flutter/pages/search/search_binding.dart';
 import 'package:wan_android_flutter/pages/search/search_page.dart';
@@ -17,6 +19,9 @@ class RouteConfig {
   ///搜索
   static final String search = "/search";
   static final String searchResult = "/result";
+
+  ///登录
+  static final String login = "/login";
 
   ///别名映射页面
   static final List<GetPage> getPages = [
@@ -39,6 +44,11 @@ class RouteConfig {
             name: searchResult,
             page: () => SearchResultPage(),
           )
-        ])
+        ]),
+    GetPage(
+      name: login,
+      page: () => LoginRegisterPage(),
+      binding: LoginRegisterBinding(),
+    )
   ];
 }

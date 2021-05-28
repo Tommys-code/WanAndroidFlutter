@@ -4,6 +4,20 @@ import 'package:wan_android_flutter/models/base_response.dart';
 import 'api.dart';
 
 class ApiProvider extends BaseProvider {
+  Future<BaseResponse> login(String username, String password) {
+    return mPost(Api.LOGIN,
+        query: {"username": username, "password": password});
+  }
+
+  Future<BaseResponse> register(
+      String username, String password, String repassword) {
+    return mPost(Api.REGISTER, query: {
+      "username": username,
+      "password": password,
+      "repassword": repassword
+    });
+  }
+
   Future<BaseResponse> getHomeBanner() {
     return mGet(Api.HOME_BANNER);
   }

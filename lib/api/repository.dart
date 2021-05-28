@@ -6,6 +6,7 @@ import 'package:wan_android_flutter/models/base_response.dart';
 import 'package:wan_android_flutter/models/home_banner.dart';
 import 'package:wan_android_flutter/models/hot_key.dart';
 import 'package:wan_android_flutter/models/project_tree.dart';
+import 'package:wan_android_flutter/models/user.dart';
 import 'package:wan_android_flutter/models/wx_chapter.dart';
 
 class Repository {
@@ -13,6 +14,20 @@ class Repository {
 
   final ApiProvider apiProvider;
 
+  Future<String?> getUserName() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getString(Constants.USER_NAME);
+  }
+
+  ///登录注册
+  Future<User?> login(String name, String pwd) async {
+    BaseResponse res = await apiProvider.login(name, pwd);
+    if (res.isSuccess()) {
+      return User.fromJson(res.data);
+    }
+  }
+
+  ///首页
   Future<List<HomeBanner>?> getHomeBanner() async {
     BaseResponse res = await apiProvider.getHomeBanner();
     if (res.isSuccess()) {
@@ -31,6 +46,7 @@ class Repository {
     }
   }
 
+  ///搜索
   Future<List<HotKey>?> getHotKey() async {
     BaseResponse res = await apiProvider.getSearchHotKey();
     if (res.isSuccess()) {
@@ -59,6 +75,7 @@ class Repository {
     }
   }
 
+  ///公众号
   Future<List<WxChapter>?> getPublicChapters() async {
     BaseResponse res = await apiProvider.getPublicChapters();
     if (res.isSuccess()) {
@@ -76,6 +93,7 @@ class Repository {
     }
   }
 
+  ///项目
   Future<List<ProjectTree>?> getProjectTree() async {
     BaseResponse res = await apiProvider.getProjectTree();
     if (res.isSuccess()) {

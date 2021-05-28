@@ -2,14 +2,14 @@ import 'package:get/get.dart';
 import 'package:wan_android_flutter/api/repository.dart';
 import 'package:wan_android_flutter/models/article_list.dart';
 
-class ProjectListState{
+class ProjectListLogic extends GetxController{
   late final Repository _repository;
   final int id;
 
   var articles = Rxn<List<ArticleData>>();
   var _currentPage = 0;
 
-  ProjectListState({required this.id}) {
+  ProjectListLogic({required this.id}) {
     _repository = Get.find();
     loadData();
   }

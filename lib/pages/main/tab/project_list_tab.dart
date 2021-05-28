@@ -1,29 +1,22 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:wan_android_flutter/models/article_list.dart';
 import 'package:wan_android_flutter/pages/main/state/project_list_logic.dart';
 import 'package:wan_android_flutter/utils/widget_extensions.dart';
-import 'package:wan_android_flutter/widgets/article_Item_widget.dart';
+import 'package:wan_android_flutter/widgets/project_article_widget.dart';
 
-class ProjectListTab extends StatefulWidget {
+class ProjectListTab extends StatelessWidget {
+  late final ProjectListLogic _logic;
+
   final int id;
 
   ProjectListTab({required this.id});
 
   @override
-  State<StatefulWidget> createState() => _ProjectListTabState();
-}
-
-class _ProjectListTabState extends State<ProjectListTab>
-    with AutomaticKeepAliveClientMixin {
-
-  late final ProjectListState state;
-
-  @override
   Widget build(BuildContext context) {
-    state = ProjectListState(id: widget.id);
-    super.build(context);
+    _logic = Get.put(ProjectListLogic(id: id), tag: "$id");
     return _buildRefresh();
   }
 
@@ -31,22 +24,27 @@ class _ProjectListTabState extends State<ProjectListTab>
     return Obx(
       () => EasyRefresh(
         child: _buildListView(),
-        onRefresh: () => state.loadData(),
-        onLoad: () => state.loadMore(),
-      ).buildListStateWidget(value: state.articles.value),
+        onRefresh: () => _logic.loadData(),
+        onLoad: () => _logic.loadMore(),
+      ).buildListStateWidget(value: _logic.articles.value),
     );
   }
 
   Widget _buildListView() {
-    return ListView.builder(
+    return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
-        ArticleData data = state.articles.value![index];
-        return ArticleItemWidget(item: data);
+        ArticleData data = _logic.articles.value![index];
+        return ProjectArticleWidget(item: data);
       },
-      itemCount: state.articles.value?.length ?? 0,
+      itemCount: _logic.articles.value?.length ?? 0,
+      separatorBuilder: (BuildContext context, int index) {
+        return Divider(
+          color: Colors.grey[400],
+          height: 2,
+          indent: 10,
+          endIndent: 10,
+        );
+      },
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
