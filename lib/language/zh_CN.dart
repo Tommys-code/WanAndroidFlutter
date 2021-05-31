@@ -23,4 +23,8 @@ const Map<String, String> zh_CN = {
   "login_password_confirm_hint": "确认密码",
   "register_account": "注册新账号",
   "direct_login": "直接登录",
+  "my_score": "我的积分",
+  "my_collect": "我的收藏",
+  "my_current_score": "当前积分：%s",
+  "my_score_history": "积分记录",
 };

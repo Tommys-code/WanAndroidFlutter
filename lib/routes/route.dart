@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:wan_android_flutter/pages/coin/my_coin_binding.dart';
+import 'package:wan_android_flutter/pages/coin/my_coin_page.dart';
 import 'package:wan_android_flutter/pages/login/login_register_binding.dart';
 import 'package:wan_android_flutter/pages/login/login_register_page.dart';
 import 'package:wan_android_flutter/pages/main/main_binding.dart';
@@ -22,6 +24,9 @@ class RouteConfig {
 
   ///登录
   static final String login = "/login";
+
+  ///积分
+  static final String myCoin = "/my/coin";
 
   ///别名映射页面
   static final List<GetPage> getPages = [
@@ -49,6 +54,11 @@ class RouteConfig {
       name: login,
       page: () => LoginRegisterPage(),
       binding: LoginRegisterBinding(),
+    ),
+    GetPage(
+      name: myCoin,
+      page: () => MyCoinPage(),
+      binding: MyCoinBinding(),
     )
   ];
 }

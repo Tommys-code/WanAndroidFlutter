@@ -8,20 +8,14 @@ import 'package:wan_android_flutter/pages/main/tab/public_tab.dart';
 class MainState {
   late RxInt currentTab;
 
-  late HomeTab _homeTab;
-  late ProjectTab _projectTab;
-  late PublicTab _publicTab;
-  late MineTab _mineTab;
-  late List<Widget> _allTabs;
+  late HomeTab _homeTab = HomeTab();
+  late ProjectTab _projectTab = ProjectTab();
+  late PublicTab _publicTab = PublicTab();
+  late MineTab _mineTab = MineTab();
+  late List<Widget> _allTabs = [_homeTab, _projectTab, _publicTab, _mineTab];
 
   MainState() {
     currentTab = 0.obs;
-
-    _homeTab = HomeTab();
-    _projectTab = ProjectTab();
-    _publicTab = PublicTab();
-    _mineTab = MineTab();
-    _allTabs = [_homeTab, _projectTab, _publicTab, _mineTab];
   }
 
   void switchTab(index) {

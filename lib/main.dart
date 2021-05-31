@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,9 +7,14 @@ import 'package:get/get.dart';
 import 'package:wan_android_flutter/app_binding.dart';
 import 'package:wan_android_flutter/routes/route.dart';
 
+import 'db/my_db.dart';
 import 'language/translation_service.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final db = await $FloorMyDb.databaseBuilder('my_db.db').build();
+  Get.put(db);
+
   runApp(MyApp());
   if (Platform.isAndroid) {
     SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(

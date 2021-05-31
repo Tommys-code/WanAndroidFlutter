@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:wan_android_flutter/models/hot_key.dart';
 import 'package:wan_android_flutter/pages/search/search_logic.dart';
 import 'package:wan_android_flutter/routes/route.dart';
+import 'package:wan_android_flutter/utils/common_widget.dart';
 
 class SearchPage extends GetView<SearchLogic> {
   @override
@@ -141,6 +142,10 @@ class SearchPage extends GetView<SearchLogic> {
   }
 
   _search(String key) {
+    if (key.isEmpty) {
+      CommonWidget.showToast('search_hint'.tr);
+      return;
+    }
     controller.saveKey(key);
     Get.toNamed(RouteConfig.search + RouteConfig.searchResult, arguments: key);
   }

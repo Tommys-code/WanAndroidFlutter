@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:wan_android_flutter/utils/common_widget.dart';
 
 extension ListWigetExt on Widget {
@@ -10,6 +11,15 @@ extension ListWigetExt on Widget {
           ? CommonWidget.buildFirstLoad()
           : value.isEmpty
               ? CommonWidget.buildEmptyList()
+              : this;
+
+  Widget buildSliverListStateWidget<T>({
+    required List<T>? value,
+  }) =>
+      value == null
+          ? CommonWidget.buildFirstLoad().sliverBox
+          : value.isEmpty
+              ? CommonWidget.buildEmptyList().sliverBox
               : this;
 }
 

@@ -12,27 +12,30 @@ class ClearTextFiled extends StatefulWidget {
   final int? maxLength;
   final ValueChanged<String>? onChanged;
   final FormFieldValidator<String>? validator;
+  final FormFieldSetter<String>? onSaved;
+
   final TextStyle? style;
   final InputDecoration decoration;
 
   final bool showClear;
 
-  const ClearTextFiled(
-      {Key? key,
-      this.showClear = false,
-      this.initialValue,
-      this.controller,
-      this.focusNode,
-      this.keyboardType,
-      this.autofocus = false,
-      this.obscureText = false,
-      this.maxLines = 1,
-      this.maxLength,
-      this.onChanged,
-      this.style,
-      this.decoration = const InputDecoration(),
-      this.validator})
-      : super(key: key);
+  const ClearTextFiled({
+    Key? key,
+    this.showClear = false,
+    this.initialValue,
+    this.controller,
+    this.focusNode,
+    this.keyboardType,
+    this.autofocus = false,
+    this.obscureText = false,
+    this.maxLines = 1,
+    this.maxLength,
+    this.onChanged,
+    this.style,
+    this.decoration = const InputDecoration(),
+    this.validator,
+    this.onSaved,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ClearTextFiledState();
@@ -93,21 +96,22 @@ class _ClearTextFiledState extends State<ClearTextFiled> {
       onChanged: widget.onChanged,
       validator: widget.validator,
       style: widget.style,
+      onSaved: widget.onSaved,
       decoration: getDecoration(),
     );
   }
 
   InputDecoration getDecoration() {
     return widget.decoration.copyWith(
-        suffixIcon: Offstage(
-          offstage: !isShowClear,
-          child: IconButton(
-            icon: Icon(Icons.clear),
-            onPressed: () {
-              _effectiveController.clear();
-            },
-          ),
-        )
+      suffixIcon: Offstage(
+        offstage: !isShowClear,
+        child: IconButton(
+          icon: Icon(Icons.clear),
+          onPressed: () {
+            _effectiveController.clear();
+          },
+        ),
+      ),
     );
   }
 }

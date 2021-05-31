@@ -20,15 +20,34 @@ class LoginRegisterPage extends GetView<LoginRegisterLogic> {
                     style: TextStyle(fontSize: 48, color: Colors.blue),
                   )).marginSymmetric(vertical: 50),
               Form(
+                key: controller.formKey,
                 child: Column(
                   children: [
                     ClearTextFiled(
+                      validator: (value) {
+                        if (value?.isEmpty ?? true) {
+                          return '请' + 'login_account_hint'.tr;
+                        }
+                        return null;
+                      },
+                      onSaved: (value){
+                        controller.name = value!;
+                      },
                       maxLines: 1,
                       showClear: true,
                       maxLength: 20,
                       decoration: _buildDecoration('login_account_hint'.tr),
                     ),
                     ClearTextFiled(
+                      validator: (value) {
+                        if (value?.isEmpty ?? true) {
+                          return '请' + 'login_password_hint'.tr;
+                        }
+                        return null;
+                      },
+                      onSaved: (value){
+                        controller.pwd = value!;
+                      },
                       maxLines: 1,
                       showClear: true,
                       obscureText: true,
@@ -38,6 +57,16 @@ class LoginRegisterPage extends GetView<LoginRegisterLogic> {
                     Obx(() => Offstage(
                           offstage: !controller.isRegister.value,
                           child: ClearTextFiled(
+                            validator: (value) {
+                              if (!controller.isRegister.value) return null;
+                              if (value?.isEmpty ?? true) {
+                                return '请' + 'login_password_hint'.tr;
+                              }
+                              return null;
+                            },
+                            onSaved: (value){
+                              controller.rePwd = value!;
+                            },
                             maxLines: 1,
                             showClear: true,
                             obscureText: true,
@@ -85,7 +114,7 @@ class LoginRegisterPage extends GetView<LoginRegisterLogic> {
     );
   }
 
-  _clickLoginOrRegister() {}
+  _clickLoginOrRegister() => controller.loginOrRegister();
 
   _clickGoToLoginOrRegister() => controller.changeLoginOrRegister();
 
@@ -98,6 +127,14 @@ class LoginRegisterPage extends GetView<LoginRegisterLogic> {
         borderSide: BorderSide(color: Colors.blue, width: 1),
       ),
       enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: Colors.blue, width: 1),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: BorderSide(color: Colors.blue, width: 1),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Colors.blue, width: 1),
       ),

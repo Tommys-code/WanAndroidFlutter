@@ -18,6 +18,14 @@ class ApiProvider extends BaseProvider {
     });
   }
 
+  Future<BaseResponse> getCoin() {
+    return mGet(Api.MY_COIN);
+  }
+
+  Future<BaseResponse> getCoinList(int page) {
+    return mGet(Api.MY_COIN_LIST.replaceFirst('{pageNum}', '$page'));
+  }
+
   Future<BaseResponse> getHomeBanner() {
     return mGet(Api.HOME_BANNER);
   }

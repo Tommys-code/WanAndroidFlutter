@@ -7,6 +7,7 @@ import 'package:wan_android_flutter/api/constants.dart';
 import 'package:wan_android_flutter/models/base_response.dart';
 import 'package:wan_android_flutter/utils/common_widget.dart';
 
+import 'interceptor/auth_interceptor.dart';
 import 'interceptor/save_cookie_interceptor.dart';
 
 class BaseProvider extends GetConnect {
@@ -15,10 +16,9 @@ class BaseProvider extends GetConnect {
   @override
   void onInit() {
     httpClient.baseUrl = Constants.baseUrl;
-    // httpClient.addAuthenticator(authInterceptor);
-    // httpClient.addRequestModifier(requestInterceptor);
+    httpClient.addRequestModifier(authInterceptor);
     httpClient.addResponseModifier(responseInterceptor);
-    httpClient.addResponseModifier(saveCookieInterceptor);
+    httpClient.addResponseModifier(cookieInterceptor);
   }
 
   Future<BaseResponse> mGet(String url,
@@ -43,20 +43,6 @@ class BaseProvider extends GetConnect {
     return response;
   }
 }
-
-// FutureOr<Request> authInterceptor(request) async {
-//   // final token = StorageService.box.pull(StorageItems.accessToken);
-//   // request.headers['X-Requested-With'] = 'XMLHttpRequest';
-//   // request.headers['Authorization'] = 'Bearer $token';
-//   return request;
-// }
-//
-// FutureOr<Request> requestInterceptor(request) async {
-//   // final token = StorageService.box.pull(StorageItems.accessToken);
-//   // request.headers['X-Requested-With'] = 'XMLHttpRequest';
-//   // request.headers['Authorization'] = 'Bearer $token';
-//   return request;
-// }
 
 FutureOr<dynamic> responseInterceptor(
     Request request, Response response) async {
