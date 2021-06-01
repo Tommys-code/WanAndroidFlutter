@@ -29,7 +29,7 @@ class MainLogic extends GetxController {
     userName.value = value ?? 'not_login'.tr;
     userName.refresh();
 
-    if(value != null && value.isNotEmpty){
+    if (value != null && value.isNotEmpty) {
       isLogin.value = true;
       mineState.getCoinData();
     } else {
@@ -37,5 +37,4 @@ class MainLogic extends GetxController {
       mineState.clearCoinData();
     }
   }
-
 }

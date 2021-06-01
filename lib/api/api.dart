@@ -30,4 +30,11 @@ class Api {
 
   static const String MY_COIN = "lg/coin/userinfo/json";
   static const String MY_COIN_LIST = "lg/coin/list/{pageNum}/json";
+
+  ///我的收藏
+  static const String MY_COLLECT_LIST = "lg/collect/list/{pageNum}/json";
+
+  ///收藏
+  static const String COLLECT = "lg/collect/{id}/json";
+  static const String UN_COLLECT = "lg/uncollect_originId/{id}/json";
 }

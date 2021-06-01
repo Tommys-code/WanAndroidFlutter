@@ -72,7 +72,6 @@ class MyCoinPage extends GetView<MyCoinLogic> {
     CoinListData data = controller.coinList.value![index];
     return InkWell(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
         width: double.infinity,
         child: Stack(
           children: [

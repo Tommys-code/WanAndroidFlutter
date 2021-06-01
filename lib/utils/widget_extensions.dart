@@ -42,6 +42,7 @@ typedef TabCallBack = void Function();
 
 extension WidgetGesture on Widget {
   Widget onTab(TabCallBack? callBack) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
         child: this,
         onTap: callBack,
       );

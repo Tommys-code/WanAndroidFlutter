@@ -34,7 +34,7 @@ class ProjectListTab extends StatelessWidget {
     return ListView.separated(
       itemBuilder: (BuildContext context, int index) {
         ArticleData data = _logic.articles.value![index];
-        return ProjectArticleWidget(item: data);
+        return ProjectArticleWidget(data: data);
       },
       itemCount: _logic.articles.value?.length ?? 0,
       separatorBuilder: (BuildContext context, int index) {

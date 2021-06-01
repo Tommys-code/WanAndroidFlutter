@@ -1,19 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wan_android_flutter/api/repository.dart';
 import 'package:wan_android_flutter/models/article_list.dart';
 import 'package:get/get.dart';
 import 'package:wan_android_flutter/routes/route.dart';
 
-class ArticleItemWidget extends StatefulWidget {
+typedef CollectCallBack = void Function(bool);
+
+class ArticleItemWidget extends StatelessWidget {
   final ArticleData item;
+  final CollectCallBack? callBack;
 
-  ArticleItemWidget({Key? key, required this.item}) : super(key: key);
+  late final Repository _repository = Get.find();
+  late final collect = RxBool(false);
 
-  @override
-  State<StatefulWidget> createState() => _ArticleItemWidgetState();
-}
+  ArticleItemWidget({
+    Key? key,
+    required this.item,
+    this.callBack,
+  }) : super(key: key) {
+    collect.value = item.collect;
+  }
 
-class _ArticleItemWidgetState extends State<ArticleItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,13 +43,9 @@ class _ArticleItemWidgetState extends State<ArticleItemWidget> {
           padding: EdgeInsets.all(10),
           child: _buildContent(),
         ),
-        onTap: () => {Get.toNamed(RouteConfig.web, arguments: getData().link)},
+        onTap: () => {Get.toNamed(RouteConfig.web, arguments: item.link)},
       ),
     );
-  }
-
-  ArticleData getData() {
-    return widget.item;
   }
 
   _buildContent() {
@@ -52,21 +56,21 @@ class _ArticleItemWidgetState extends State<ArticleItemWidget> {
           children: [
             _buildNew(),
             Text(
-              getData().author.isEmpty
-                  ? 'home_share_user'.trArgs([getData().shareUser])
+              item.author?.isEmpty ?? true
+                  ? 'home_share_user'.trArgs([item.shareUser])
                   : 'home_author'.trArgs(
-                      [getData().author],
+                      [item.author ?? ''],
                     ),
               style: TextStyle(fontSize: 14, color: Color(0xff666666)),
             ),
             Expanded(child: SizedBox()),
-            Text(getData().niceDate,
+            Text(item.niceDate,
                 style: TextStyle(fontSize: 12, color: Color(0xff666666))),
           ],
         ),
         SizedBox(height: 4),
         Text(
-          widget.item.title,
+          item.title,
           style: TextStyle(fontSize: 16, color: Colors.grey[800]),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
@@ -76,7 +80,9 @@ class _ArticleItemWidgetState extends State<ArticleItemWidget> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              getData().superChapterName + ' - ' + getData().chapterName,
+              item.superChapterName.isEmpty
+                  ? item.chapterName
+                  : item.superChapterName + ' - ' + item.chapterName,
               style: TextStyle(fontSize: 12, color: Colors.grey[700]),
             ),
             Expanded(child: SizedBox()),
@@ -85,12 +91,12 @@ class _ArticleItemWidgetState extends State<ArticleItemWidget> {
               height: 24,
               child: IconButton(
                 padding: EdgeInsets.all(0),
-                icon: Icon(
-                  getData().collect ? Icons.star : Icons.star_border,
-                  color: Colors.blue,
-                  size: 24,
-                ),
-                onPressed: () {},
+                icon: Obx(() => Icon(
+                      collect.value ? Icons.star : Icons.star_border,
+                      color: Colors.blue,
+                      size: 24,
+                    )),
+                onPressed: () => _collect(),
               ),
             )
           ],
@@ -99,9 +105,19 @@ class _ArticleItemWidgetState extends State<ArticleItemWidget> {
     );
   }
 
+  _collect() async {
+    bool res = await _repository.collect(item.id, item.collect);
+    if (res) {
+      item.collect = !item.collect;
+      collect.value = !collect.value;
+      if (callBack != null) callBack!(true);
+    }
+    if (callBack != null) callBack!(false);
+  }
+
   _buildNew() {
     return Offstage(
-      offstage: !widget.item.isNew(),
+      offstage: !item.isNew(),
       child: Container(
         margin: EdgeInsets.only(right: 5),
         decoration: BoxDecoration(

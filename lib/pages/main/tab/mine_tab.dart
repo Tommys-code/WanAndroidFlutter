@@ -27,7 +27,31 @@ class MineTab extends GetView<MainLogic> {
             height: 2,
             indent: 10,
             endIndent: 10,
-          )
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+            child: Expanded(
+                child: Text(
+              'my_collect'.tr,
+              style: TextStyle(fontSize: 16, color: Colors.grey[850]),
+            )).drawableHorizontal(
+              left: Icon(
+                Icons.star_border,
+                color: Colors.blue[700],
+                size: 24,
+              ).marginOnly(right: 10),
+              right: Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.grey[600],
+              ),
+            ),
+          ).onTab(() => _onTab(() => Get.toNamed(RouteConfig.myCollect))),
+          Divider(
+            color: Colors.grey[400],
+            height: 2,
+            indent: 10,
+            endIndent: 10,
+          ),
         ],
       ),
     );
@@ -98,6 +122,7 @@ class MineTab extends GetView<MainLogic> {
         ],
       ),
     ).onTab(() {
+      printInfo(info: 'onTap');
       _onTab(() => Get.toNamed(RouteConfig.myCoin));
     });
   }

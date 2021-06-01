@@ -10,6 +10,7 @@ import 'package:wan_android_flutter/models/article_list.dart';
 import 'package:wan_android_flutter/models/base_response.dart';
 import 'package:wan_android_flutter/models/coin.dart';
 import 'package:wan_android_flutter/models/coin_list_data.dart';
+import 'package:wan_android_flutter/models/collect_list.dart';
 import 'package:wan_android_flutter/models/home_banner.dart';
 import 'package:wan_android_flutter/models/hot_key.dart';
 import 'package:wan_android_flutter/models/project_tree.dart';
@@ -159,5 +160,20 @@ class Repository {
     if (res.isSuccess()) {
       return CoinList.fromJson(res.data);
     }
+  }
+
+  Future<CollectList?> getCollectList(int page) async {
+    BaseResponse res = await apiProvider.getCollectList(page);
+    if (res.isSuccess()) {
+      return CollectList.fromJson(res.data);
+    }
+  }
+
+  Future<bool> collect(int id, bool isCollect) async {
+    BaseResponse res = await apiProvider.collect(id, isCollect);
+    if (res.isSuccess()) {
+      return true;
+    }
+    return false;
   }
 }

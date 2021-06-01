@@ -26,7 +26,7 @@ class ArticleList {
 
 class ArticleData {
   late int id;
-  late String author;
+  late String? author;
   late String shareUser;
   late String niceDate;
   late String title;

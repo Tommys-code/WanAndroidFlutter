@@ -65,4 +65,13 @@ class ApiProvider extends BaseProvider {
       query: {"cid": "$id"},
     );
   }
+
+  Future<BaseResponse> getCollectList(int num) {
+    return mGet(Api.MY_COLLECT_LIST.replaceFirst('{pageNum}', '$num'));
+  }
+
+  Future<BaseResponse> collect(int id, bool isCollect) {
+    return mPost(
+        (isCollect ? Api.UN_COLLECT : Api.COLLECT).replaceFirst("{id}", "$id"));
+  }
 }
