@@ -7,6 +7,7 @@ import 'package:wan_android_flutter/models/collect_list.dart';
 import 'package:wan_android_flutter/pages/collect/my_collect_logic.dart';
 import 'package:wan_android_flutter/utils/common_widget.dart';
 import 'package:wan_android_flutter/utils/widget_extensions.dart';
+import 'package:wan_android_flutter/widgets/animation_list_item.dart';
 import 'package:wan_android_flutter/widgets/article_Item_widget.dart';
 
 class MyCollectPage extends GetView<MyCollectLogic> {
@@ -32,20 +33,32 @@ class MyCollectPage extends GetView<MyCollectLogic> {
 
   Widget _buildItem(BuildContext context, int index) {
     CollectArticleData data = controller.articleList.value![index];
-    return ArticleItemWidget(
-      item: ArticleData(
-        id: data.id,
-        author: data.author,
-        title: data.title,
-        publishTime: 0,
-        superChapterName: '',
-        shareUser: '',
-        desc: '',
-        envelopePic: '',
-        collect: true,
-        chapterName: data.chapterName,
-        link: data.link,
-        niceDate: data.niceDate,
+    GlobalKey<AnimationListItemState> key = GlobalKey();
+    return AnimationListItem(
+      key: key,
+      child: ArticleItemWidget(
+        item: ArticleData(
+          id: data.originId,
+          author: data.author,
+          title: data.title,
+          publishTime: 0,
+          superChapterName: '',
+          shareUser: '',
+          desc: '',
+          envelopePic: '',
+          collect: true,
+          chapterName: data.chapterName,
+          link: data.link,
+          niceDate: data.niceDate,
+        ),
+        callBack: (success) => {
+          if (success)
+            {
+              key.currentState?.removeItem((finish) {
+                controller.removeItem(index);
+              })
+            },
+        },
       ),
     );
   }

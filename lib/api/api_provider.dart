@@ -9,6 +9,10 @@ class ApiProvider extends BaseProvider {
         query: {"username": username, "password": password});
   }
 
+  Future<BaseResponse> logout() {
+    return mGet(Api.LOGOUT);
+  }
+
   Future<BaseResponse> register(
       String username, String password, String repassword) {
     return mPost(Api.REGISTER, query: {

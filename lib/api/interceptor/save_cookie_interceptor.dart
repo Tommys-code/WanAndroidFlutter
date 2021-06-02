@@ -16,10 +16,18 @@ FutureOr<dynamic> cookieInterceptor(Request request, Response response) async {
       saveCookie(request.url.host, cookies!);
     }
   }
+  if (request.url.toString().contains(Api.LOGOUT)) {
+    clearCookie(request.url.host);
+  }
   return response;
 }
 
 saveCookie(String domain, String cookie) async {
   SharedPreferences pref = await SharedPreferences.getInstance();
   return pref.setString(domain, cookie);
+}
+
+clearCookie(String domain) async {
+  SharedPreferences pref = await SharedPreferences.getInstance();
+  pref.remove(domain);
 }

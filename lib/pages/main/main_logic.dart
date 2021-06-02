@@ -37,4 +37,9 @@ class MainLogic extends GetxController {
       mineState.clearCoinData();
     }
   }
+
+  logout() async {
+    bool success = await _repository.logout() ?? false;
+    if (success) getUserInfo();
+  }
 }

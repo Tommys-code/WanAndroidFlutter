@@ -36,6 +36,7 @@ class HomeTab extends GetView<MainLogic> {
 
   Widget _buildContent() {
     return EasyRefresh.custom(
+      firstRefresh: true,
       slivers: [
         SliverToBoxAdapter(
           child: Obx(() => _buildBanner()),

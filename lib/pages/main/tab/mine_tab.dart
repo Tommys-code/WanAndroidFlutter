@@ -12,7 +12,7 @@ class MineTab extends GetView<MainLogic> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => {},
+            onPressed: () => Get.toNamed(RouteConfig.mySetting),
             icon: Icon(Icons.settings),
           )
         ],

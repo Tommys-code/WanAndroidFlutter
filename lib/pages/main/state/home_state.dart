@@ -12,8 +12,6 @@ class HomeState {
 
   HomeState() {
     repository = Get.find();
-
-    loadData();
   }
 
   getBanner() async {

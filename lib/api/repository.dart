@@ -58,6 +58,16 @@ class Repository {
     }
   }
 
+  Future<bool?> logout() async{
+    BaseResponse res = await apiProvider.logout();
+    if (res.isSuccess()) {
+      cookies.clear();
+      SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.remove(Constants.USER_NAME);
+      return true;
+    }
+  }
+
   ///首页
   Future<List<HomeBanner>?> getHomeBanner() async {
     BaseResponse res = await apiProvider.getHomeBanner();

@@ -4,6 +4,7 @@ import 'package:wan_android_flutter/api/repository.dart';
 import 'package:wan_android_flutter/models/article_list.dart';
 import 'package:get/get.dart';
 import 'package:wan_android_flutter/routes/route.dart';
+import 'package:wan_android_flutter/utils/common_widget.dart';
 
 typedef CollectCallBack = void Function(bool);
 
@@ -108,6 +109,8 @@ class ArticleItemWidget extends StatelessWidget {
   _collect() async {
     bool res = await _repository.collect(item.id, item.collect);
     if (res) {
+      CommonWidget.showToast(
+          item.collect ? 'un_collect_success'.tr : 'collect_success'.tr);
       item.collect = !item.collect;
       collect.value = !collect.value;
       if (callBack != null) callBack!(true);

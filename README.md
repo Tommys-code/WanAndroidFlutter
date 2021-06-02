@@ -1,6 +1,6 @@
-# wan_android_flutter
-
-A new Flutter application.
+# 项目介绍
+玩安卓flutter版
+* 项目Api采用[玩安卓](https://www.wanandroid.com/blog/show/2)开放api实现
 
 ## Getting Started
 

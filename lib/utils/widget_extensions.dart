@@ -47,3 +47,7 @@ extension WidgetGesture on Widget {
         onTap: callBack,
       );
 }
+
+extension WidgetAlgin on Widget {
+  Widget center() => Center(child: this);
+}

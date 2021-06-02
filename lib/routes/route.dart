@@ -6,6 +6,7 @@ import 'package:wan_android_flutter/pages/collect/my_collect_page.dart';
 import 'package:wan_android_flutter/pages/login/login_register_binding.dart';
 import 'package:wan_android_flutter/pages/login/login_register_page.dart';
 import 'package:wan_android_flutter/pages/main/main_binding.dart';
+import 'package:wan_android_flutter/pages/main/setting_page.dart';
 import 'package:wan_android_flutter/pages/search/search_binding.dart';
 import 'package:wan_android_flutter/pages/search/search_page.dart';
 import 'package:wan_android_flutter/pages/search/search_result_page.dart';
@@ -30,6 +31,7 @@ class RouteConfig {
   ///积分
   static final String myCoin = "/my/coin";
   static final String myCollect = "/my/collect";
+  static final String mySetting = "/my/setting";
 
   ///别名映射页面
   static final List<GetPage> getPages = [
@@ -67,6 +69,10 @@ class RouteConfig {
       name: myCollect,
       page: () => MyCollectPage(),
       binding: MyCollectBinding(),
+    ),
+    GetPage(
+      name: mySetting,
+      page: () => SettingPage(),
     ),
   ];
 }

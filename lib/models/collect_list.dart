@@ -50,6 +50,7 @@ class CollectArticleData {
     link = json['link'];
     niceDate = json['niceDate'];
     title = json['title'];
+    originId = json['originId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -60,6 +61,7 @@ class CollectArticleData {
     data['link'] = this.link;
     data['niceDate'] = this.niceDate;
     data['title'] = this.title;
+    data['originId'] = this.originId;
     return data;
   }
 }

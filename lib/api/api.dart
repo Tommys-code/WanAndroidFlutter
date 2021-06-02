@@ -27,6 +27,7 @@ class Api {
   ///登录注册
   static const String LOGIN = "user/login";
   static const String REGISTER = "user/register";
+  static const String LOGOUT = "user/logout/json";
 
   static const String MY_COIN = "lg/coin/userinfo/json";
   static const String MY_COIN_LIST = "lg/coin/list/{pageNum}/json";

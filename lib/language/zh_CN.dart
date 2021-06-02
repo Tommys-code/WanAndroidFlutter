@@ -27,4 +27,12 @@ const Map<String, String> zh_CN = {
   "my_collect": "我的收藏",
   "my_current_score": "当前积分：%s",
   "my_score_history": "积分记录",
+  "collect_success": "收藏成功",
+  "un_collect_success": "取消收藏成功",
+  "setting": "设置",
+  "app_name": "玩安卓-flutter",
+  "logout": "退出登录",
+  "about_us": "关于我们",
+  "confirm_logout": "确定退出登录吗？",
+  "hint": "提示",
 };

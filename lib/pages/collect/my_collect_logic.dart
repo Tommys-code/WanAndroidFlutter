@@ -39,4 +39,9 @@ class MyCollectLogic extends GetxController {
     }
     return false;
   }
+
+  removeItem(int index){
+    articleList.value?.removeAt(index);
+    articleList.refresh();
+  }
 }
